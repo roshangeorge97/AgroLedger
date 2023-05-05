@@ -52,6 +52,7 @@ function AddMed() {
                 medStage[i] = await supplychain.methods.showStage(i + 1).call();
             }
             setMED(med);
+            console.log(med);
             setMedStage(medStage);
             setloader(false);
         }
@@ -80,6 +81,7 @@ function AddMed() {
         event.preventDefault();
         try {
             var reciept = await SupplyChain.methods.addMedicine(MedName, MedDes).send({ from: currentaccount });
+            console.log(MedName, MedDes);
             if (reciept) {
                 loadBlockchaindata();
             }

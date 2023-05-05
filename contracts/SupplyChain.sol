@@ -10,19 +10,13 @@ contract SupplyChain {
         Owner = msg.sender;
     }
 
-    //Roles (flow of pharma supply chain)
-    // RawMaterialSupplier; //This is where Manufacturer will get raw materials to make medicines
-    // Manufacturer;  //Various WHO guidelines should be followed by this person
-    // Distributor; //This guy distributes the medicines to retailers
-    // Retailer; //Normal customer buys from the retailer
-
     //modifier to make sure only the owner is using the function
     modifier onlyByOwner() {
         require(msg.sender == Owner);
         _;
     }
 
-    //stages of a medicine in pharma supply chain
+
     enum STAGE {
         Init,
         RawMaterialSupply,
@@ -31,9 +25,8 @@ contract SupplyChain {
         Retail,
         sold
     }
-    //using this we are going to track every single medicine the owner orders
 
-    //Medicine count
+
     uint256 public medicineCtr = 0;
     //Raw material supplier count
     uint256 public rmsCtr = 0;
@@ -43,6 +36,14 @@ contract SupplyChain {
     uint256 public disCtr = 0;
     //retailer count
     uint256 public retCtr = 0;
+    uint256 public price=0;
+    uint256 public price1=10;
+    uint256 public price2=20;
+    uint256 public price3=30;
+    uint256 public price4=40;
+    uint256 public price5=50;
+    uint256 public price6=60;
+
 
     //To store information about the medicine
     struct medicine {
@@ -54,12 +55,26 @@ contract SupplyChain {
         uint256 DISid; //id of the distributor for this particular medicine
         uint256 RETid; //id of the retailer for this particular medicine
         STAGE stage; //current medicine stage
+        uint256 price;
     }
 
+    
+
     //To store all the medicines on the blockchain
+    function setPrice(uint256 _medicineID, uint256 _price) public {
+    require(_medicineID > 0 && _medicineID <= medicineCtr);
+    MedicineStock[_medicineID].price = _price;
+}
+
+function getPrice(uint256 _medicineID) public view returns (uint256) {
+    require(_medicineID > 0 && _medicineID <= medicineCtr);
+    return MedicineStock[_medicineID].price;
+}
+
     mapping(uint256 => medicine) public MedicineStock;
 
     //To show status to client applications
+
     function showStage(uint256 _medicineID)
         public
         view
@@ -78,6 +93,26 @@ contract SupplyChain {
             return "Retail Stage";
         else if (MedicineStock[_medicineID].stage == STAGE.sold)
             return "Medicine Sold";
+    }
+
+        function showPrice(uint256 _medicineID)
+        public
+        view
+        returns (uint256)
+    {
+        require(medicineCtr > 0);
+        if (MedicineStock[_medicineID].stage == STAGE.Init)
+            return (price1);
+        else if (MedicineStock[_medicineID].stage == STAGE.RawMaterialSupply)
+            return (price2);
+        else if (MedicineStock[_medicineID].stage == STAGE.Manufacture)
+            return (price3);
+        else if (MedicineStock[_medicineID].stage == STAGE.Distribution)
+            return (price4);
+        else if (MedicineStock[_medicineID].stage == STAGE.Retail)
+            return (price5);
+        else if (MedicineStock[_medicineID].stage == STAGE.sold)
+            return (price6);
     }
 
     //To store information about raw material supplier
@@ -265,7 +300,6 @@ contract SupplyChain {
             0,
             0,
             0,
-            STAGE.Init
-        );
+            STAGE.Init,price);
     }
 }
