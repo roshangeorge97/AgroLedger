@@ -2,6 +2,27 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import Web3 from "web3";
 import SupplyChainABI from "./artifacts/SupplyChain.json"
+import { Web3Storage } from 'web3.storage'
+
+// Construct with token and endpoint
+const client = new Web3Storage({ token: API_TOKEN })
+
+const fileInput = document.querySelector('input[type="file"]')
+
+// Pack files into a CAR and send to web3.storage
+const rootCid = await client.put(fileInput.files) // Promise<CIDString>
+
+// Get info on the Filecoin deals that the CID is stored in
+const info = await client.status(rootCid) // Promise<Status | undefined>
+
+// Fetch and verify files from web3.storage
+const res = await client.get(rootCid) // Promise<Web3Response | null>
+const files = await res.files() // Promise<Web3File[]>
+
+for (const file of files) {
+  console.log(`${file.cid} ${file.name} ${file.size}`)
+}
+
 
 function Supply() {
     const history = useHistory()
@@ -79,7 +100,7 @@ function Supply() {
     console.log("price: "+price)
     }
 
-    
+
 
     const redirect_to_home = () => {
         history.push('/')
@@ -213,6 +234,7 @@ function Supply() {
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
                 <input className="form-control-sm" type="text"  onChange={handlerChangePrice} placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Supply</button>
+                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
             </form>
             <hr />
             <br />
@@ -221,6 +243,7 @@ function Supply() {
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
                 <input className="form-control-sm" type="text"  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitManufacturing}>Manufacture</button>
+                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
             </form>
             <hr />
             <br />
@@ -229,6 +252,7 @@ function Supply() {
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
                 <input className="form-control-sm" type="text"  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitDistribute}>Distribute</button>
+                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
             </form>
             <hr />
             <br />
@@ -237,6 +261,7 @@ function Supply() {
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
                 <input className="form-control-sm" type="text"  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRetail}>Retail</button>
+                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
             </form>
             <hr />
             <br />
@@ -245,6 +270,7 @@ function Supply() {
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
                 <input className="form-control-sm" type="text"  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitSold}>Sold</button>
+                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
             </form>
             <hr />
         </div>
