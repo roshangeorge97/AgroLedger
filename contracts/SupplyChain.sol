@@ -55,22 +55,41 @@ contract SupplyChain {
         uint256 DISid; //id of the distributor for this particular medicine
         uint256 RETid; //id of the retailer for this particular medicine
         STAGE stage; //current medicine stage
-        uint256 price;
+        uint256 price1;
+        uint256 price2;
+        uint256 price3;
+        uint256 price4;
     }
 
     
 
     //To store all the medicines on the blockchain
-    function setPrice(uint256 _medicineID, uint256 _price) public {
-    require(_medicineID > 0 && _medicineID <= medicineCtr);
-    MedicineStock[_medicineID].price = _price;
+    function setPrice1(uint256 _medicineID, uint256 _price) public {
+    MedicineStock[_medicineID].price1 = _price;
+}
+    function setPrice2(uint256 _medicineID, uint256 _price) public {
+    MedicineStock[_medicineID].price2 = _price;
+}
+    function setPrice3(uint256 _medicineID, uint256 _price) public {
+    MedicineStock[_medicineID].price3 = _price;
+}
+    function setPrice4(uint256 _medicineID, uint256 _price) public {
+    MedicineStock[_medicineID].price4 = _price;
 }
 
-function getPrice(uint256 _medicineID) public view returns (uint256) {
-    require(_medicineID > 0 && _medicineID <= medicineCtr);
-    return MedicineStock[_medicineID].price;
+function getPrice1(uint256 _medicineID) public view returns (uint256) {
+    return MedicineStock[_medicineID].price1;
 }
 
+function getPrice2(uint256 _medicineID) public view returns (uint256) {
+    return MedicineStock[_medicineID].price2;
+}
+function getPrice3(uint256 _medicineID) public view returns (uint256) {
+    return MedicineStock[_medicineID].price3;
+}
+function getPrice4(uint256 _medicineID) public view returns (uint256) {
+    return MedicineStock[_medicineID].price4;
+}
     mapping(uint256 => medicine) public MedicineStock;
 
     //To show status to client applications
@@ -82,7 +101,7 @@ function getPrice(uint256 _medicineID) public view returns (uint256) {
     {
         require(medicineCtr > 0);
         if (MedicineStock[_medicineID].stage == STAGE.Init)
-            return "Medicine Ordered";
+            return "Product Ordered";
         else if (MedicineStock[_medicineID].stage == STAGE.RawMaterialSupply)
             return "Raw Material Supply Stage";
         else if (MedicineStock[_medicineID].stage == STAGE.Manufacture)
@@ -92,7 +111,7 @@ function getPrice(uint256 _medicineID) public view returns (uint256) {
         else if (MedicineStock[_medicineID].stage == STAGE.Retail)
             return "Retail Stage";
         else if (MedicineStock[_medicineID].stage == STAGE.sold)
-            return "Medicine Sold";
+            return "Product Sold";
     }
 
         function showPrice(uint256 _medicineID)
@@ -300,6 +319,6 @@ function getPrice(uint256 _medicineID) public view returns (uint256) {
             0,
             0,
             0,
-            STAGE.Init,price);
+            STAGE.Init,price1,price2,price3,price4);
     }
 }

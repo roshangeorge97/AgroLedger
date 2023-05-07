@@ -111,7 +111,7 @@ function Track() {
                     <span><b>Description: </b>{MED[ID].description}</span>
                     <br />
                     <span><b>Current stage: </b>{MedStage[ID]}</span>
-                    <span><b>Price: </b>{MED[ID].price}</span>
+                    <span><b>Price: </b>{MED[ID].price5}</span>
                 </article>
                 <hr />
                 <br />
@@ -122,7 +122,7 @@ function Track() {
                         <p><b>Supplier ID: </b>{RMS[MED[ID].RMSid].id}</p>
                         <p><b>Name:</b> {RMS[MED[ID].RMSid].name}</p>
                         <p><b>Place: </b>{RMS[MED[ID].RMSid].place}</p>
-                        <span><b>Price: </b>{MED[ID].price}</span>
+                        <span><b>Price: </b>{MED[ID].price1}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -130,7 +130,7 @@ function Track() {
                         <p><b>Manufacturer ID: </b>{MAN[MED[ID].MANid].id}</p>
                         <p><b>Name:</b> {MAN[MED[ID].MANid].name}</p>
                         <p><b>Place: </b>{MAN[MED[ID].MANid].place}</p>
-                        <span><b>Price: 46</b></span>
+                        <span><b>Price: </b>{MED[ID].price2}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -138,7 +138,7 @@ function Track() {
                         <p><b>Distributor ID: </b>{DIS[MED[ID].DISid].id}</p>
                         <p><b>Name:</b> {DIS[MED[ID].DISid].name}</p>
                         <p><b>Place: </b>{DIS[MED[ID].DISid].place}</p>
-                        <span><b>Price: </b>{MED[ID].price}</span>
+                        <span><b>Price: </b>{MED[ID].price3}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -146,7 +146,7 @@ function Track() {
                         <p><b>Retailer ID: </b>{RET[MED[ID].RETid].id}</p>
                         <p><b>Name:</b> {RET[MED[ID].RETid].name}</p>
                         <p><b>Place: </b>{RET[MED[ID].RETid].place}</p>
-                        <span><b>Price: </b>{MED[ID].price}</span>
+                        <span><b>Price: </b>{MED[ID].price4}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -175,7 +175,7 @@ function Track() {
                     <span><b>Description: </b>{MED[ID].description}</span>
                     <br />
                     <span><b>Current stage: </b>{MedStage[ID]}</span>
-                    <span><b>Price: </b>{MED[ID].price}</span>
+                    <span><b>Price: </b>{MED[ID].price4}</span>
                 </article>
                 <hr />
                 <br />
@@ -186,7 +186,7 @@ function Track() {
                         <p><b>Supplier ID: </b>{RMS[MED[ID].RMSid].id}</p>
                         <p><b>Name:</b> {RMS[MED[ID].RMSid].name}</p>
                         <p><b>Place: </b>{RMS[MED[ID].RMSid].place}</p>
-                        <span><b>Price: </b>{MED[ID].price}</span>
+                        <span><b>Price: </b>{MED[ID].price1}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -194,7 +194,7 @@ function Track() {
                         <p><b>Manufacturer ID: </b>{MAN[MED[ID].MANid].id}</p>
                         <p><b>Name:</b> {MAN[MED[ID].MANid].name}</p>
                         <p><b>Place: </b>{MAN[MED[ID].MANid].place}</p>
-                        <span><b>Price: 47</b></span>
+                        <span><b>Price:</b>{MED[ID].price2}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -202,7 +202,7 @@ function Track() {
                         <p><b>Distributor ID: </b>{DIS[MED[ID].DISid].id}</p>
                         <p><b>Name:</b> {DIS[MED[ID].DISid].name}</p>
                         <p><b>Place: </b>{DIS[MED[ID].DISid].place}</p>
-                        <span><b>Price: </b>78</span>
+                        <span><b>Price: </b>{MED[ID].price3}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -210,7 +210,7 @@ function Track() {
                         <p><b>Retailer ID: </b>{RET[MED[ID].RETid].id}</p>
                         <p><b>Name:</b> {RET[MED[ID].RETid].name}</p>
                         <p><b>Place: </b>{RET[MED[ID].RETid].place}</p>
-                        <span><b>Price: </b>89</span>
+                        <span><b>Price: </b>{MED[ID].price4}</span>
                     </article>
                 </section>
                 {qrCodeImage && <img src={qrCodeImage} alt="QR Code" />}
@@ -235,7 +235,7 @@ function Track() {
                     <span><b>Description: </b>{MED[ID].description}</span>
                     <br />
                     <span><b>Current stage: </b>{MedStage[ID]}</span>
-                    <span><b>Price: </b>{MED[ID].price}</span>
+                    <span><b>Price: </b>{MED[ID].price3}</span>
                 </article>
                 <hr />
                 <br />
@@ -246,7 +246,7 @@ function Track() {
                         <p><b>Supplier ID: </b>{RMS[MED[ID].RMSid].id}</p>
                         <p><b>Name:</b> {RMS[MED[ID].RMSid].name}</p>
                         <p><b>Place: </b>{RMS[MED[ID].RMSid].place}</p>
-                        <span><b>Price: </b>{MED[ID].price}</span>
+                        <span><b>Price: </b>{MED[ID].price1}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -254,7 +254,7 @@ function Track() {
                         <p><b>Manufacturer ID: </b>{MAN[MED[ID].MANid].id}</p>
                         <p><b>Name:</b> {MAN[MED[ID].MANid].name}</p>
                         <p><b>Place: </b>{MAN[MED[ID].MANid].place}</p>
-                        <span><b>Price: </b>46</span>
+                        <span><b>Price: </b>{MED[ID].price2}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -262,7 +262,7 @@ function Track() {
                         <p><b>Distributor ID: </b>{DIS[MED[ID].DISid].id}</p>
                         <p><b>Name:</b> {DIS[MED[ID].DISid].name}</p>
                         <p><b>Place: </b>{DIS[MED[ID].DISid].place}</p>
-                        <span><b>Price: </b>72</span>
+                        <span><b>Price: </b>{MED[ID].price3}</span>
                     </article>
                 </section>
                 {qrCodeImage && <img src={qrCodeImage} alt="QR Code" />}
@@ -287,7 +287,7 @@ function Track() {
                     <span><b>Description: </b>{MED[ID].description}</span>
                     <br />
                     <span><b>Current stage: </b>{MedStage[ID]}</span>
-                    <span><b>Price: </b>{MED[ID].price}</span>
+                    <span><b>Price: </b>{MED[ID].price2}</span>
                 </article>
                 <hr />
                 <br />
@@ -298,7 +298,7 @@ function Track() {
                         <p><b>Supplier ID: </b>{RMS[MED[ID].RMSid].id}</p>
                         <p><b>Name:</b> {RMS[MED[ID].RMSid].name}</p>
                         <p><b>Place: </b>{RMS[MED[ID].RMSid].place}</p>
-                        <span><b>Price: </b>{MED[ID].price}</span>
+                        <span><b>Price: </b>{MED[ID].price1}</span>
                     </article>
                     <span>&#10132;</span>
                     <article className="col-3">
@@ -306,7 +306,7 @@ function Track() {
                         <p><b>Manufacturer ID: </b>{MAN[MED[ID].MANid].id}</p>
                         <p><b>Name:</b> {MAN[MED[ID].MANid].name}</p>
                         <p><b>Place: </b>{MAN[MED[ID].MANid].place}</p>
-                        <span><b>Price: </b>89</span>
+                        <span><b>Price: </b>{MED[ID].price2}</span>
                     </article>
                 </section>
                 {qrCodeImage && <img src={qrCodeImage} alt="QR Code" />}
@@ -331,7 +331,7 @@ function Track() {
                     <span><b>Description: </b>{MED[ID].description}</span>
                     <br />
                     <span><b>Current stage: </b>{MedStage[ID]}</span>
-                    <span><b>Price: </b>{MED[ID].price}</span>
+                    <span><b>Price: </b>{MED[ID].price1}</span>
                 </article>
                 <hr />
                 <br />
@@ -342,7 +342,7 @@ function Track() {
                         <p><b>Supplier ID: </b>{RMS[MED[ID].RMSid].id}</p>
                         <p><b>Name:</b> {RMS[MED[ID].RMSid].name}</p>
                         <p><b>Place: </b>{RMS[MED[ID].RMSid].place}</p>
-                        <span><b>Price: </b>{MED[ID].price}</span>
+                        <span><b>Price: </b>{MED[ID].price1}</span>
                     </article>
                 </section>
                 {qrCodeImage && <img src={qrCodeImage} alt="QR Code" />}
@@ -367,7 +367,7 @@ function Track() {
                     <span><b>Description: </b>{MED[ID].description}</span>
                     <br />
                     <span><b>Current stage: </b>{MedStage[ID]}</span>
-                    <span><b>Price: </b>{MED[ID].price}</span>
+                    <span><b>Price: </b>{MED[ID].price1}</span>
                     <hr />
                     <br />
                     <h5>Product Not Yet Processed...</h5>
@@ -457,11 +457,20 @@ function Track() {
                                 <td>{MED[key].name}</td>
                                 <td>{MED[key].description}</td>
                                 <td>
-                                    {
-                                        MED[key].price
-                                    }
-                                </td>
-                                <td>
+                                
+        <span>{
+          MedStage[key] === 'Raw Material Supply Stage' 
+          ? MED[key].price1
+          : MedStage[key] === 'Manufacturing Stage'
+          ? MED[key].price2
+          : MedStage[key] === 'Distribution Stage'
+          ? MED[key].price3
+          : MedStage[key] === 'Retail Stage'
+          ? MED[key].price4
+          : null // add a default value or handle case when no matching stage is found
+        }
+        </span> </td>
+                           <td>
                                     {
                                         MedStage[key]
                                     }

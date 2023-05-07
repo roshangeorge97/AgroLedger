@@ -2,26 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import Web3 from "web3";
 import SupplyChainABI from "./artifacts/SupplyChain.json"
-import { Web3Storage } from 'web3.storage'
 
-// Construct with token and endpoint
-const client = new Web3Storage({ token: API_TOKEN })
-
-const fileInput = document.querySelector('input[type="file"]')
-
-// Pack files into a CAR and send to web3.storage
-const rootCid = await client.put(fileInput.files) // Promise<CIDString>
-
-// Get info on the Filecoin deals that the CID is stored in
-const info = await client.status(rootCid) // Promise<Status | undefined>
-
-// Fetch and verify files from web3.storage
-const res = await client.get(rootCid) // Promise<Web3Response | null>
-const files = await res.files() // Promise<Web3File[]>
-
-for (const file of files) {
-  console.log(`${file.cid} ${file.name} ${file.size}`)
-}
 
 
 function Supply() {
@@ -37,7 +18,13 @@ function Supply() {
     const [MED, setMED] = useState();
     const [MedStage, setMedStage] = useState();
     const [ID, setID] = useState();
-    const [price,setPrice] = useState();
+    const [price1,setPrice1] = useState();
+    const [price2,setPrice2] = useState();
+    const [price3,setPrice3] = useState();
+    const [price4,setPrice4] = useState();
+    const [price5,setPrice5] = useState();
+
+
 
     const loadWeb3 = async () => {
         if (window.ethereum) {
@@ -89,15 +76,46 @@ function Supply() {
 
     }
 
-    const loadPrice = async (event) => {
+    const loadPrice1 = async (event) => {
         event.preventDefault();
         var i;
         const medCtr = await SupplyChain.methods.medicineCtr().call();
         for (i = 0; i < medCtr; i++) {
-    const price1 = await SupplyChain.methods.getPrice(i+1).call();
-    setPrice(price1);
+    const price1 = await SupplyChain.methods.getPrice1(i+1).call();
+    setPrice1(price1);
         }
-    console.log("price: "+price)
+    console.log("price: "+price1)
+    }
+    
+    const loadPrice2 = async (event) => {
+        event.preventDefault();
+        var i;
+        const medCtr = await SupplyChain.methods.medicineCtr().call();
+        for (i = 0; i < medCtr; i++) {
+    const price2 = await SupplyChain.methods.getPrice2(i+1).call();
+    setPrice2(price2);
+        }
+    console.log("price: "+price2)
+    }
+        const loadPrice3 = async (event) => {
+        event.preventDefault();
+        var i;
+        const medCtr = await SupplyChain.methods.medicineCtr().call();
+        for (i = 0; i < medCtr; i++) {
+    const price3 = await SupplyChain.methods.getPrice3(i+1).call();
+    setPrice3(price3);
+        }
+    console.log("price: "+price3)
+    }
+        const loadPrice4 = async (event) => {
+        event.preventDefault();
+        var i;
+        const medCtr = await SupplyChain.methods.medicineCtr().call();
+        for (i = 0; i < medCtr; i++) {
+    const price4 = await SupplyChain.methods.getPrice4(i+1).call();
+    setPrice4(price4);
+        }
+    console.log("price: "+price4)
     }
 
 
@@ -110,8 +128,20 @@ function Supply() {
         setID(event.target.value);
     }
 
-    const handlerChangePrice = (event) =>{
-        setPrice(event.target.value);
+    const handlerChangePrice1 = (event) =>{
+        setPrice1(event.target.value);
+    }
+    const handlerChangePrice2 = (event) =>{
+        setPrice2(event.target.value);
+    }
+    const handlerChangePrice3 = (event) =>{
+        setPrice3(event.target.value);
+    }
+    const handlerChangePrice4 = (event) =>{
+        setPrice4(event.target.value);
+    }
+    const handlerChangePrice5 = (event) =>{
+        setPrice5(event.target.value);
     }
 
     const handlerSubmitRMSsupply = async (event) => {
@@ -119,10 +149,10 @@ function Supply() {
         try {
             console.log('called!!!!!!!!!!!')
           var reciept = await SupplyChain.methods.RMSsupply(ID).send({ from: currentaccount });
-          var reciept2 = await SupplyChain.methods.setPrice(ID, price).send({ from: currentaccount });
+          var reciept2 = await SupplyChain.methods.setPrice1(ID, price1).send({ from: currentaccount });
           console.log(reciept);
           console.log(reciept2);
-          loadPrice();
+          loadPrice1();
           if (reciept) {
             loadBlockchaindata();
           }
@@ -136,8 +166,10 @@ function Supply() {
         event.preventDefault();
         try {
             var reciept = await SupplyChain.methods.Manufacturing(ID).send({ from: currentaccount });
-
-          loadPrice();
+            var reciept2 = await SupplyChain.methods.setPrice2(ID, price2).send({ from: currentaccount });
+          console.log(reciept);
+          console.log(reciept2);
+          loadPrice2();
             if (reciept) {
                 loadBlockchaindata();
             }
@@ -153,10 +185,10 @@ function Supply() {
         event.preventDefault();
         try {
             var reciept = await SupplyChain.methods.Distribute(ID).send({ from: currentaccount });
-            var reciept2 = await SupplyChain.methods.setPrice(ID, price).send({ from: currentaccount });
+            var reciept2 = await SupplyChain.methods.setPrice3(ID, price3).send({ from: currentaccount });
           console.log(reciept);
           console.log(reciept2);
-          loadPrice();
+          loadPrice3();
             if (reciept) {
                 
                 loadBlockchaindata();
@@ -169,10 +201,10 @@ function Supply() {
     const handlerSubmitRetail = async (event) => {
         event.preventDefault();
         try { var reciept = await SupplyChain.methods.Retail(ID).send({ from: currentaccount });
-        var reciept2 = await SupplyChain.methods.setPrice(ID, price).send({ from: currentaccount });
+        var reciept2 = await SupplyChain.methods.setPrice4(ID, price4).send({ from: currentaccount });
       console.log(reciept);
       console.log(reciept2);
-      loadPrice();
+      loadPrice4();
             if (reciept) {
                 loadBlockchaindata();
             }
@@ -185,6 +217,9 @@ function Supply() {
         event.preventDefault();
         try {
             var reciept = await SupplyChain.methods.sold(ID).send({ from: currentaccount });
+            var reciept2 = await SupplyChain.methods.setPrice5(ID, price5).send({ from: currentaccount });
+            console.log(reciept);
+            console.log(reciept2);
             if (reciept) {
                 loadBlockchaindata();
             }
@@ -210,67 +245,90 @@ function Supply() {
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(MED).map(function (key) {
-                        return (
-                            <tr key={key}>
-                                <td>{MED[key].id}</td>
-                                <td>{MED[key].name}</td>
-                                <td>{MED[key].description}</td>
-                                <td>
-                                {MED[key].price}
-                                </td>
-                                <td>
-                                    {
-                                        MedStage[key]
-                                    }
-                                </td>
-                            </tr>
-                        )
-                    })}
+                {Object.keys(MED).map(function (key) {
+    return (
+        <tr key={key}>
+            <td>{MED[key].id}</td>
+            <td>{MED[key].name}</td>
+            <td>{MED[key].description}</td>
+            <td>
+                {
+                    MedStage[key] === 'Raw Material Supply Stage' 
+                    ? MED[key].price1
+                    : MedStage[key] === 'Manufacturing Stage'
+                        ? MED[key].price2
+                        : MedStage[key] === 'Distribution Stage'
+                            ? MED[key].price3
+                            : MedStage[key] === 'Retail Stage'
+                                ? MED[key].price4
+                                : null // add a default value or handle case when no matching stage is found
+                }
+            </td>
+            <td>
+                {MedStage[key]}
+            </td>
+        </tr>
+    )
+})}
                 </tbody>
             </table>
             <h5><b>Step 1: Supply Raw Materials</b>(Only a registered Raw Material Supplier can perform this step):-</h5>
             <form onSubmit={handlerSubmitRMSsupply}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
-                <input className="form-control-sm" type="text"  onChange={handlerChangePrice} placeholder="Enter Selling Price" required />
+                <input className="form-control-sm" type="text"  onChange={handlerChangePrice1} placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Supply</button>
-                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
+                <label className="btn btn-outline-success btn-sm">
+      Upload Receipt
+      <input type="file" onChange={handlerSubmitRMSsupply} hidden />
+    </label>
             </form>
             <hr />
             <br />
             <h5><b>Step 2: Manufacture</b>(Only a registered Manufacturer can perform this step):-</h5>
             <form onSubmit={handlerSubmitManufacturing}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
-                <input className="form-control-sm" type="text"  placeholder="Enter Selling Price" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangePrice2}  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitManufacturing}>Manufacture</button>
-                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
+                <label className="btn btn-outline-success btn-sm">
+      Upload Receipt
+      <input type="file" onChange={handlerSubmitRMSsupply} hidden />
+    </label>
             </form>
             <hr />
             <br />
             <h5><b>Step 3: Distribute</b>(Only a registered Distributor can perform this step):-</h5>
             <form onSubmit={handlerSubmitDistribute}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
-                <input className="form-control-sm" type="text"  placeholder="Enter Selling Price" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangePrice3}  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitDistribute}>Distribute</button>
-                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
+                <label className="btn btn-outline-success btn-sm">
+      Upload Receipt
+      <input type="file" onChange={handlerSubmitRMSsupply} hidden />
+    </label>
             </form>
             <hr />
             <br />
             <h5><b>Step 4: Retail</b>(Only a registered Retailer can perform this step):-</h5>
             <form onSubmit={handlerSubmitRetail}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
-                <input className="form-control-sm" type="text"  placeholder="Enter Selling Price" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangePrice4}  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRetail}>Retail</button>
-                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
+                <label className="btn btn-outline-success btn-sm">
+      Upload Receipt
+      <input type="file" onChange={handlerSubmitRMSsupply} hidden />
+    </label>
             </form>
             <hr />
             <br />
             <h5><b>Step 5: Mark as sold</b>(Only a registered Retailer can perform this step):-</h5>
             <form onSubmit={handlerSubmitSold}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
-                <input className="form-control-sm" type="text"  placeholder="Enter Selling Price" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangePrice5}  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitSold}>Sold</button>
-                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Upload Receipt</button>
+                <label className="btn btn-outline-success btn-sm">
+      Upload Receipt
+      <input type="file" onChange={handlerSubmitRMSsupply} hidden />
+    </label>
             </form>
             <hr />
         </div>
