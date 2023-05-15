@@ -15,7 +15,6 @@ function AddMed() {
     const [SupplyChain, setSupplyChain] = useState();
     const [MED, setMED] = useState();
     const [MedName, setMedName] = useState();
-    const [MedDes, setMedDes] = useState();
     const [MedStage, setMedStage] = useState();
 
 
@@ -74,14 +73,11 @@ function AddMed() {
     const handlerChangeNameMED = (event) => {
         setMedName(event.target.value);
     }
-    const handlerChangeDesMED = (event) => {
-        setMedDes(event.target.value);
-    }
     const handlerSubmitMED = async (event) => {
         event.preventDefault();
         try {
-            var reciept = await SupplyChain.methods.addMedicine(MedName, MedDes).send({ from: currentaccount });
-            console.log(MedName, MedDes);
+            var reciept = await SupplyChain.methods.addMedicine(MedName).send({ from: currentaccount });
+            console.log(MedName);
             if (reciept) {
                 loadBlockchaindata();
             }
@@ -98,7 +94,6 @@ function AddMed() {
             <h5>Add Product Order:</h5>
             <form onSubmit={handlerSubmitMED}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeNameMED} placeholder="Product Name" required />
-                <input className="form-control-sm" type="text" onChange={handlerChangeDesMED} placeholder="Product Description" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitMED}>Order</button>
             </form>
             <br />

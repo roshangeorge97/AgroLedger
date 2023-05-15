@@ -2594,6 +2594,11 @@
     "upper-case" "^1.1.1"
     "upper-case-first" "^1.1.0"
 
+"chart.js@^3.9.1":
+  "integrity" "sha512-Ro2JbLmvg83gXF5F4sniaQ+lTbSv18E+TIf2cOeiH1Iqd2PGFOtem+DUufMZsCJwFE7ywPOpfXFBwRTGq7dh6w=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.9.1.tgz"
+  "version" "3.9.1"
+
 "checkpoint-store@^1.1.0":
   "integrity" "sha512-J/NdY2WvIx654cc6LWSq/IYFFCUf75fFTgwzFnmbqyORH4MwgiQCgswLLKBGzmsyTI5V7i5bp/So6sMbDWhedg=="
   "resolved" "https://registry.npmjs.org/checkpoint-store/-/checkpoint-store-1.1.0.tgz"

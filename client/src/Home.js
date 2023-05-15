@@ -17,7 +17,7 @@ function Home() {
     }
     return (
         <div>
-            <h3>GST Supply Chain Flow :- </h3>
+            <h3>Agro Supply Chain :- </h3>
             <br />
             <h6>(Note: Here <u>Owner</u> is the person who deployed the smart contract on the blockchain)</h6>
             <h5>Step 1: Owner Should Register Raw material suppliers ,Manufacturers, Distributors and Retailers</h5>

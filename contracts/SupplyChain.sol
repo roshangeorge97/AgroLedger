@@ -7,8 +7,8 @@ contract SupplyChain {
 
     //note this constructor will be called when smart contract will be deployed on blockchain
     constructor() public {
-        Owner = msg.sender;
-    }
+    Owner = msg.sender;
+}
 
     //modifier to make sure only the owner is using the function
     modifier onlyByOwner() {
@@ -27,6 +27,7 @@ contract SupplyChain {
     }
 
 
+
     uint256 public medicineCtr = 0;
     //Raw material supplier count
     uint256 public rmsCtr = 0;
@@ -43,13 +44,13 @@ contract SupplyChain {
     uint256 public price4=40;
     uint256 public price5=50;
     uint256 public price6=60;
+    uint256 public organicscore=0;
 
 
     //To store information about the medicine
-    struct medicine {
+    struct product {
         uint256 id; //unique medicine id
         string name; //name of the medicine
-        string description; //about medicine
         uint256 RMSid; //id of the Raw Material supplier for this particular medicine
         uint256 MANid; //id of the Manufacturer for this particular medicine
         uint256 DISid; //id of the distributor for this particular medicine
@@ -59,8 +60,35 @@ contract SupplyChain {
         uint256 price2;
         uint256 price3;
         uint256 price4;
+        uint256 organicscore;
     }
 
+    struct soil{
+        uint256 id;
+        uint256 NaturalFertilizer;
+        uint256 SyntheticFertilizer;
+        uint256 Organicertilizer;
+        uint256 phLevel;
+        uint256 waterquality;
+    }
+
+   
+   struct Storage{
+       uint256 id;
+       uint256 temp;
+       uint256 humidity;
+   }
+
+   struct Certify{
+       uint256 id;
+       Certification certify;
+   }
+
+   enum Certification{
+       Yes,
+       No,
+       Pending
+   }
     
 
     //To store all the medicines on the blockchain
@@ -90,49 +118,76 @@ function getPrice3(uint256 _medicineID) public view returns (uint256) {
 function getPrice4(uint256 _medicineID) public view returns (uint256) {
     return MedicineStock[_medicineID].price4;
 }
-    mapping(uint256 => medicine) public MedicineStock;
-
+    mapping(uint256 => product) public MedicineStock;
+    mapping(uint256 => soil) public Soil;
+    mapping(uint256 => Storage) public StorageStock;
+    mapping(uint256 => Certify) public CertificationStock;
     //To show status to client applications
 
-    function showStage(uint256 _medicineID)
-        public
-        view
-        returns (string memory)
-    {
-        require(medicineCtr > 0);
-        if (MedicineStock[_medicineID].stage == STAGE.Init)
-            return "Product Ordered";
-        else if (MedicineStock[_medicineID].stage == STAGE.RawMaterialSupply)
-            return "Raw Material Supply Stage";
-        else if (MedicineStock[_medicineID].stage == STAGE.Manufacture)
-            return "Manufacturing Stage";
-        else if (MedicineStock[_medicineID].stage == STAGE.Distribution)
-            return "Distribution Stage";
-        else if (MedicineStock[_medicineID].stage == STAGE.Retail)
-            return "Retail Stage";
-        else if (MedicineStock[_medicineID].stage == STAGE.sold)
-            return "Product Sold";
-    }
 
-        function showPrice(uint256 _medicineID)
-        public
-        view
-        returns (uint256)
-    {
-        require(medicineCtr > 0);
-        if (MedicineStock[_medicineID].stage == STAGE.Init)
-            return (price1);
-        else if (MedicineStock[_medicineID].stage == STAGE.RawMaterialSupply)
-            return (price2);
-        else if (MedicineStock[_medicineID].stage == STAGE.Manufacture)
-            return (price3);
-        else if (MedicineStock[_medicineID].stage == STAGE.Distribution)
-            return (price4);
-        else if (MedicineStock[_medicineID].stage == STAGE.Retail)
-            return (price5);
-        else if (MedicineStock[_medicineID].stage == STAGE.sold)
-            return (price6);
-    }
+ function showCertification(uint256 _medicineID)
+    public
+    view
+    returns (string memory)
+{
+    require(medicineCtr > 0, "No Product available");
+    
+    if (CertificationStock[_medicineID].certify == Certification.No)
+        return "No";
+    else if (CertificationStock[_medicineID].certify == Certification.Pending)
+        return "Pending";
+    else if (CertificationStock[_medicineID].certify == Certification.Yes)
+        return "Yes";
+    else
+        return ""; // add a default return statement to avoid the warning
+}
+
+ function showStage(uint256 _medicineID)
+    public
+    view
+    returns (string memory)
+{
+    require(medicineCtr > 0, "No Product available");
+    
+    if (MedicineStock[_medicineID].stage == STAGE.Init)
+        return "Product Ordered";
+    else if (MedicineStock[_medicineID].stage == STAGE.RawMaterialSupply)
+        return "Raw Material Supply Stage";
+    else if (MedicineStock[_medicineID].stage == STAGE.Manufacture)
+        return "Manufacturing Stage";
+    else if (MedicineStock[_medicineID].stage == STAGE.Distribution)
+        return "Distribution Stage";
+    else if (MedicineStock[_medicineID].stage == STAGE.Retail)
+        return "Retail Stage";
+    else if (MedicineStock[_medicineID].stage == STAGE.sold)
+        return "Product Sold";
+    else
+        return ""; // add a default return statement to avoid the warning
+}
+
+
+function showPrice(uint256 _medicineID)
+    public
+    view
+    returns (uint256)
+{
+    require(medicineCtr > 0, "No Product available");
+    
+    if (MedicineStock[_medicineID].stage == STAGE.Init)
+        return price1;
+    else if (MedicineStock[_medicineID].stage == STAGE.RawMaterialSupply)
+        return price2;
+    else if (MedicineStock[_medicineID].stage == STAGE.Manufacture)
+        return price3;
+    else if (MedicineStock[_medicineID].stage == STAGE.Distribution)
+        return price4;
+    else if (MedicineStock[_medicineID].stage == STAGE.Retail)
+        return price5;
+    else if (MedicineStock[_medicineID].stage == STAGE.sold)
+        return price6;
+    else
+        revert("Invalid medicine ID"); // add a default return statement to avoid the warning
+}
 
     //To store information about raw material supplier
     struct rawMaterialSupplier {
@@ -219,13 +274,17 @@ function getPrice4(uint256 _medicineID) public view returns (uint256) {
     }
 
     //To supply raw materials from RMS supplier to the manufacturer
-    function RMSsupply(uint256 _medicineID) public {
+    function RMSsupply(uint256 _medicineID,uint256 _nf,uint256 _sf,uint256 _of) public {
         require(_medicineID > 0 && _medicineID <= medicineCtr);
         uint256 _id = findRMS(msg.sender);
         require(_id > 0);
         require(MedicineStock[_medicineID].stage == STAGE.Init);
         MedicineStock[_medicineID].RMSid = _id;
         MedicineStock[_medicineID].stage = STAGE.RawMaterialSupply;
+        Soil[_medicineID].NaturalFertilizer= _nf;
+        Soil[_medicineID].SyntheticFertilizer= _sf;
+        Soil[_medicineID].Organicertilizer= _of;
+        CertificationStock[_medicineID].certify = Certification.No;
     }
 
     //To check if RMS is available in the blockchain
@@ -238,13 +297,16 @@ function getPrice4(uint256 _medicineID) public view returns (uint256) {
     }
 
     //To manufacture medicine
-    function Manufacturing(uint256 _medicineID) public {
+    function Manufacturing(uint256 _medicineID,uint256 _ph,uint256 _wq) public {
         require(_medicineID > 0 && _medicineID <= medicineCtr);
         uint256 _id = findMAN(msg.sender);
         require(_id > 0);
         require(MedicineStock[_medicineID].stage == STAGE.RawMaterialSupply);
         MedicineStock[_medicineID].MANid = _id;
         MedicineStock[_medicineID].stage = STAGE.Manufacture;
+        Soil[_medicineID].phLevel= _ph;
+        Soil[_medicineID].waterquality= _wq;
+        CertificationStock[_medicineID].certify = Certification.No;
     }
 
     //To check if Manufacturer is available in the blockchain
@@ -257,13 +319,16 @@ function getPrice4(uint256 _medicineID) public view returns (uint256) {
     }
 
     //To supply medicines from Manufacturer to distributor
-    function Distribute(uint256 _medicineID) public {
+    function Distribute(uint256 _medicineID,uint256 _temp,uint256 _hum) public {
         require(_medicineID > 0 && _medicineID <= medicineCtr);
         uint256 _id = findDIS(msg.sender);
         require(_id > 0);
         require(MedicineStock[_medicineID].stage == STAGE.Manufacture);
         MedicineStock[_medicineID].DISid = _id;
         MedicineStock[_medicineID].stage = STAGE.Distribution;
+        StorageStock[_medicineID].temp= _temp;
+        StorageStock[_medicineID].humidity= _hum;
+        CertificationStock[_medicineID].certify = Certification.No;
     }
 
     //To check if distributor is available in the blockchain
@@ -283,6 +348,7 @@ function getPrice4(uint256 _medicineID) public view returns (uint256) {
         require(MedicineStock[_medicineID].stage == STAGE.Distribution);
         MedicineStock[_medicineID].RETid = _id;
         MedicineStock[_medicineID].stage = STAGE.Retail;
+        CertificationStock[_medicineID].certify = Certification.Yes;
     }
 
     //To check if retailer is available in the blockchain
@@ -305,20 +371,19 @@ function getPrice4(uint256 _medicineID) public view returns (uint256) {
     }
 
     // To add new medicines to the stock
-    function addMedicine(string memory _name, string memory _description)
+    function addMedicine(string memory _name)
         public
         onlyByOwner()
     {
         require((rmsCtr > 0) && (manCtr > 0) && (disCtr > 0) && (retCtr > 0));
         medicineCtr++;
-        MedicineStock[medicineCtr] = medicine(
+        MedicineStock[medicineCtr] = product(
             medicineCtr,
             _name,
-            _description,
             0,
             0,
             0,
             0,
-            STAGE.Init,price1,price2,price3,price4);
+            STAGE.Init,price1,price2,price3,price4,organicscore);
     }
 }

@@ -23,6 +23,14 @@ function Supply() {
     const [price3,setPrice3] = useState();
     const [price4,setPrice4] = useState();
     const [price5,setPrice5] = useState();
+    const [NF,setNF] = useState();
+    const [SF,setSF] = useState();
+    const [OF,setOF] = useState();
+    const [PH,setPH] = useState();
+    const [WQ,setWQ] = useState();
+    const [TEMP,setTEMP] = useState();
+    const [HUM,setHUM] = useState();
+
 
 
 
@@ -128,6 +136,29 @@ function Supply() {
         setID(event.target.value);
     }
 
+    const handlerChangeNF = (event) => {
+        setNF(event.target.value);
+    }
+    const handlerChangeSF = (event) => {
+        setSF(event.target.value);
+    }
+    const handlerChangeOF = (event) => {
+        setOF(event.target.value);
+    }
+    const handlerChangePH = (event) => {
+        setPH(event.target.value);
+    }
+    const handlerChangeWQ = (event) => {
+        setWQ(event.target.value);
+    }
+    const handlerChangeTEMP = (event) => {
+        setTEMP(event.target.value);
+    }
+    const handlerChangeHUM = (event) => {
+        setHUM(event.target.value);
+    }
+    
+
     const handlerChangePrice1 = (event) =>{
         setPrice1(event.target.value);
     }
@@ -147,8 +178,12 @@ function Supply() {
     const handlerSubmitRMSsupply = async (event) => {
         event.preventDefault();
         try {
+            console.log('ID:', ID);
+console.log('NF:', NF);
+console.log('SF:', SF);
+console.log('OF:', OF);
             console.log('called!!!!!!!!!!!')
-          var reciept = await SupplyChain.methods.RMSsupply(ID).send({ from: currentaccount });
+          var reciept = await SupplyChain.methods.RMSsupply(ID,NF,SF,OF).send({ from: currentaccount });
           var reciept2 = await SupplyChain.methods.setPrice1(ID, price1).send({ from: currentaccount });
           console.log(reciept);
           console.log(reciept2);
@@ -165,7 +200,7 @@ function Supply() {
     const handlerSubmitManufacturing = async (event) => {
         event.preventDefault();
         try {
-            var reciept = await SupplyChain.methods.Manufacturing(ID).send({ from: currentaccount });
+            var reciept = await SupplyChain.methods.Manufacturing(ID,PH,WQ).send({ from: currentaccount });
             var reciept2 = await SupplyChain.methods.setPrice2(ID, price2).send({ from: currentaccount });
           console.log(reciept);
           console.log(reciept2);
@@ -184,7 +219,7 @@ function Supply() {
     const handlerSubmitDistribute = async (event) => {
         event.preventDefault();
         try {
-            var reciept = await SupplyChain.methods.Distribute(ID).send({ from: currentaccount });
+            var reciept = await SupplyChain.methods.Distribute(ID,TEMP,HUM).send({ from: currentaccount });
             var reciept2 = await SupplyChain.methods.setPrice3(ID, price3).send({ from: currentaccount });
           console.log(reciept);
           console.log(reciept2);
@@ -275,7 +310,10 @@ function Supply() {
             <h5><b>Step 1: Supply Raw Materials</b>(Only a registered Raw Material Supplier can perform this step):-</h5>
             <form onSubmit={handlerSubmitRMSsupply}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
-                <input className="form-control-sm" type="text"  onChange={handlerChangePrice1} placeholder="Enter Selling Price" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangeNF} placeholder="Enter Amount of Natural Fertiizer used" required />
+                <input className="form-control-sm" type="text"  onChange={handlerChangeSF} placeholder="Enter Amount of Synthetic Fertilizer used" required />
+                <input className="form-control-sm" type="text"  onChange={handlerChangeOF} placeholder="Enter Amount of Organic Fertilizer used" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangePrice1}  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitRMSsupply}>Supply</button>
                 <label className="btn btn-outline-success btn-sm">
       Upload Receipt
@@ -287,6 +325,8 @@ function Supply() {
             <h5><b>Step 2: Manufacture</b>(Only a registered Manufacturer can perform this step):-</h5>
             <form onSubmit={handlerSubmitManufacturing}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangePH} placeholder="Enter PH of soil" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangeWQ} placeholder="Scale the water quality" required />
                 <input className="form-control-sm" type="text" onChange={handlerChangePrice2}  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitManufacturing}>Manufacture</button>
                 <label className="btn btn-outline-success btn-sm">
@@ -299,6 +339,8 @@ function Supply() {
             <h5><b>Step 3: Distribute</b>(Only a registered Distributor can perform this step):-</h5>
             <form onSubmit={handlerSubmitDistribute}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangeTEMP} placeholder="Enter Storage room tempreature" required />
+                <input className="form-control-sm" type="text" onChange={handlerChangeHUM} placeholder="Enter Storage room humidity" required />
                 <input className="form-control-sm" type="text" onChange={handlerChangePrice3}  placeholder="Enter Selling Price" required />
                 <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmitDistribute}>Distribute</button>
                 <label className="btn btn-outline-success btn-sm">
