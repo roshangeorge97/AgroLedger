@@ -18,6 +18,10 @@
     <br> 
 </p>
 
+## 👥 Contributions Welcome
+
+Contributions to this project are welcome! 🎉 If you find a bug 🐛 or have a feature request 💡, please open an issue or submit a pull request 🤝. We appreciate your help in making this project better for everyone. ✨
+
 ## 📝 Table of Contents
 - [About](#about)
 - [Getting Started](#getting_started)
