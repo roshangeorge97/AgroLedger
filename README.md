@@ -3,7 +3,7 @@
   
   
 [![Logo](/Screenshots/2137825_food_fruit_lemon_organic_vegan_icon(1).png)]()
-<h3 align="center">AgroLedger </h3>
+<h3 align="center">AgroLedger</h3>
 
   
   [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
