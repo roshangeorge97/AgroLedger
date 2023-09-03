@@ -264,49 +264,60 @@ console.log('OF:', OF);
         }
     }
     return (
-        <div>
-            <span><b>Current Account Address:</b> {currentaccount}</span>
-            <span onClick={redirect_to_home} className="btn btn-outline-danger btn-sm"> HOME</span>
-            <h6><b>Supply Chain Flow:</b></h6>
-            <p>Product Order -&gt; Raw Material Supplier -&gt; Manufacturer -&gt; Distributor -&gt; Retailer -&gt; Consumer</p>
-            <table className="table table-sm table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Product ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Current Sold Price</th>
-                        <th scope="col">Current Processing Stage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {Object.keys(MED).map(function (key) {
-    return (
-        <tr key={key}>
-            <td>{MED[key].id}</td>
-            <td>{MED[key].name}</td>
-            <td>{MED[key].description}</td>
-            <td>
-                {
-                    MedStage[key] === 'Raw Material Supply Stage' 
+        <div className="bg-green-100 min-h-screen p-4">
+  <div className="container mx-auto">
+    <span className="block text-lg font-semibold text-green-800">
+      Current Account Address: {currentaccount}
+    </span>
+    <button
+      onClick={redirect_to_home}
+      className="block mt-2 px-4 py-1 text-white bg-red-500 rounded-md"
+    >
+      HOME
+    </button>
+            <div className="mt-4">
+      <h6 className="text-lg font-semibold text-green-800">Supply Chain Flow:</h6>
+      <p className="text-green-800">
+        Product Order -&gt; Raw Material Supplier -&gt; Manufacturer -&gt; Distributor -&gt; Retailer -&gt; Consumer
+      </p>
+
+      <table className="w-full mt-2 border-collapse border border-green-500">
+        <thead>
+          <tr>
+            <th className="border border-green-500 px-4 py-2 text-green-800">Product ID</th>
+            <th className="border border-green-500 px-4 py-2 text-green-800">Name</th>
+            <th className="border border-green-500 px-4 py-2 text-green-800">Description</th>
+            <th className="border border-green-500 px-4 py-2 text-green-800">Current Sold Price</th>
+            <th className="border border-green-500 px-4 py-2 text-green-800">Current Processing Stage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(MED).map(function (key) {
+            return (
+              <tr key={key}>
+                <td className="border border-green-500 px-4 py-2">{MED[key].id}</td>
+                <td className="border border-green-500 px-4 py-2">{MED[key].name}</td>
+                <td className="border border-green-500 px-4 py-2">{MED[key].description}</td>
+                <td className="border border-green-500 px-4 py-2">
+                  {
+                    MedStage[key] === 'Raw Material Supply Stage'
                     ? MED[key].price1
                     : MedStage[key] === 'Manufacturing Stage'
-                        ? MED[key].price2
-                        : MedStage[key] === 'Distribution Stage'
-                            ? MED[key].price3
-                            : MedStage[key] === 'Retail Stage'
-                                ? MED[key].price4
-                                : null // add a default value or handle case when no matching stage is found
-                }
-            </td>
-            <td>
-                {MedStage[key]}
-            </td>
-        </tr>
-    )
-})}
-                </tbody>
-            </table>
+                    ? MED[key].price2
+                    : MedStage[key] === 'Distribution Stage'
+                    ? MED[key].price3
+                    : MedStage[key] === 'Retail Stage'
+                    ? MED[key].price4
+                    : null // add a default value or handle case when no matching stage is found
+                  }
+                </td>
+                <td className="border border-green-500 px-4 py-2">{MedStage[key]}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
             <h5><b>Step 1: Supply Raw Materials</b>(Only a registered Raw Material Supplier can perform this step):-</h5>
             <form onSubmit={handlerSubmitRMSsupply}>
                 <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
@@ -373,6 +384,7 @@ console.log('OF:', OF);
     </label>
             </form>
             <hr />
+        </div>
         </div>
     )
 }

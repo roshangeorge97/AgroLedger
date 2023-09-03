@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import logo from 'C:/Users/User/Documents/supply-chain-truffle-react-main/client/src/assets/planting.png'
 
 const navigation = [
   { name: 'Product', href: '/product' },
@@ -23,7 +22,6 @@ export default function HomePage() {
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
-                src={logo}
                 alt="My Logo"
               />
             </a>

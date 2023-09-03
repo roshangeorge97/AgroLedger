@@ -377,128 +377,64 @@ function Track() {
     }
     if (TrackTillManufacture) {
       return (
-        <>
-       
-    
-     <span><b>Current Account Address:</b> {currentaccount}</span>
-   
-                                
-          <div   className="flex">
-    
-            {/* Left section */}
-            <div className="w-2/3 bg-white-100 p-4 flex flex-col mb-4">
-              {/* Top section */}
-              <h1 className="text-2xl font-bold mb-10">{MED[ID].name}</h1>
-              <div className="flex items-center">
+        <div className="flex bg-green-300 h-screen">
+          {/* Left section */}
+          <div className="w-2/3 p-8 bg-white flex flex-col">
+            {/* Top section */}
+            <h1 className="text-3xl font-semibold mb-6">{MED[ID].name}</h1>
+            <div className="flex items-center mb-6">
+              <div className="w-40 h-40 rounded-full bg-green-300 mr-4">
                 <img
                   src="https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=170667a&w=0&k=20&c=QDuN_TDSFCW2m-np7xPWPslXyrhwtIYP9Wq6W3NysPc="
-                  alt="Image 1"
-                  className="w-60 h-60 rounded-full mr-2"
+                  alt="Product Image"
+                  className="w-full h-full rounded-full"
                 />
-                <p>{MED[ID].id}</p>
               </div>
-              {/* Bottom section */}
-              <div className="flex items-center mt-20">
-                <div>
-                  <h1 className="text-2xl font-bold mb-10">Sustainability Score </h1>
-                  <div className='h-24 w-24'>
-                    <ul>
-                   <li> Organic Fertlizeer:  {SOIL[ID].Organicertilizer}</li>
-                   <li> Natural Fertilizer: {SOIL[ID].NaturalFertilizer}</li>
-                   <li>Synthetic Fertilizer: {SOIL[ID].SyntheticFertilizer}</li>
-                   <li> pH Quality: 5</li>
-                   <li> Water Quality: 5</li>
-                   <li> Tempreature: 52</li>
-                   <li> Humidity : 23</li>
-
-                    Sustaibility Score: 72
-                    </ul>
-                  <PieChart chartData={chartData} />
-       </div>
-            
-                </div>
-              </div>
-
-              
-             
+              <p className="text-lg">Product Id: {MED[ID].id}</p>
             </div>
-            <div className='h-24 w-24'>
-              {qrCodeImage && <img src={qrCodeImage} alt="QR Code" />}
+            {/* Bottom section */}
+            <div className="flex items-center">
+              <div className="mr-8">
+                <h2 className="text-xl font-semibold mb-4">Sustainability Score</h2>
+                <ul>
+                  <li>Organic Fertilizer: {SOIL[ID].Organicertilizer}</li>
+                  <li>Natural Fertilizer: {SOIL[ID].NaturalFertilizer}</li>
+                  <li>Synthetic Fertilizer: {SOIL[ID].SyntheticFertilizer}</li>
+                  <li>pH Quality: 5</li>
+                  <li>Water Quality: 5</li>
+                  <li>Temperature: 52</li>
+                  <li>Humidity: 23</li>
+                </ul>
               </div>
-            {/* Right section */}
-            <div class="min-h-screen bg-white-500 py-6 flex flex-col justify-center sm:py-12">
-      <div class="py-3 sm:max-w-xl sm:mx-auto w-full px-2 sm:px-0">
-    
-        <div class="relative text-gray-700 antialiased text-sm font-semibold">
-    
-          {/* <!-- Vertical bar running through middle --> */}
-          <div class="hidden sm:block w-1 bg-green-300 absolute h-full left-1/2 transform -translate-x-1/2"></div>
-    
-          {/* <!-- Left section, set by justify-start and sm:pr-8 --> */}
-          <div class="mt-6 sm:mt-0 sm:mb-12">
-            <div class="flex flex-col sm:flex-row items-center">
-              <div class="flex justify-start w-full mx-auto items-center">
-                <div class="w-full sm:w-1/2 sm:pr-8">
-                  <div class="p-4 bg-green-200 rounded shadow">
-                    {RMS[MED[ID].RMSid].id}
-                    {RMS[MED[ID].RMSid].name}
-                    {RMS[MED[ID].RMSid].place}
-                    {RMS[MED[ID].RMSid].price1}
-                  </div>
-                </div>
-              </div>
-              <div class="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
+              <div className="h-24 w-24">
+                <PieChart chartData={chartData} />
               </div>
             </div>
           </div>
-    
-          {/* <!-- Right section, set by justify-end and sm:pl-8 --> */}
-          <div class="mt-6 sm:mt-0 sm:mb-12">
-            <div class="flex flex-col sm:flex-row items-center">
-              <div class="flex justify-end w-full mx-auto items-center">
-                <div class="w-full sm:w-1/2 sm:pl-8">
-                  <div class="p-4 bg-green-200 rounded shadow">
-                  {MAN[MED[ID].MANid].id}
-                  {MAN[MED[ID].MANid].name}
-                  {MAN[MED[ID].MANid].place}
-                  {MAN[MED[ID].MANid].price2}
-                  </div>
-                </div>
-              </div>
-              <div class="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              </div>
-            </div>
+          {/* Right section */}
+          <div className="w-1/3 py-12 px-8 bg-white flex flex-col justify-center">
+            <h2 className="text-xl font-semibold mb-4">Scan the QR Code for More Details</h2>
+            <p className="text-gray-600">
+              Scan the QR code to access additional information about this product and its journey through various stages.
+            </p>
           </div>
-    
-    
-    
+          {/* QR Code section */}
+          <div className="w-1/6 flex items-center justify-center">
+            {qrCodeImage && <img src={qrCodeImage} alt="QR Code" className="h-32" />}
+          </div>
         </div>
-    
-      </div>
-    </div>
-          </div>
-          
-        </>
       );
+      
     }
     if (TrackTillRMS) {
       return (
         <>
-       
-    
-     <span><b>Current Account Address:</b> {currentaccount}</span>
-   
-                                
-          <div   className="flex">
-    
+          <span className="block font-semibold mt-4">
+            Current Account Address: {currentaccount}
+          </span>
+          <div className="flex mt-2 bg-gray-100">
             {/* Left section */}
-            <div className="w-2/3 bg-white-100 p-4 flex flex-col mb-4">
+            <div className="w-2/3 bg-white p-4 flex flex-col mb-4">
               {/* Top section */}
               <h1 className="text-2xl font-bold mb-10">{MED[ID].name}</h1>
               <div className="flex items-center">
@@ -512,213 +448,140 @@ function Track() {
               {/* Bottom section */}
               <div className="flex items-center mt-20">
                 <div>
-                  <h1 className="text-2xl font-bold mb-10">Sustainability Score </h1>
+                  <h1 className="text-2xl font-bold mb-10">Sustainability Score</h1>
                   <div className='h-24 w-24'>
                     <ul>
-                   <li> Organic Fertlizeer:  {SOIL[ID].Organicertilizer}</li>
-                   <li> Natural Fertilizer: {SOIL[ID].NaturalFertilizer}</li>
-                   <li>Synthetic Fertilizer: {SOIL[ID].SyntheticFertilizer}</li>
-                   <li> pH Quality: 5</li>
-                   <li> Water Quality: 5</li>
-                   <li> Tempreature: 52</li>
-                   <li> Humidity : 23</li>
-
-                    Sustaibility Score: 72
+                      <li>Organic Fertilizer: {SOIL[ID].Organicertilizer}</li>
+                      <li>Natural Fertilizer: {SOIL[ID].NaturalFertilizer}</li>
+                      <li>Synthetic Fertilizer: {SOIL[ID].SyntheticFertilizer}</li>
+                      <li>pH Quality: 5</li>
+                      <li>Water Quality: 5</li>
+                      <li>Temperature: 52</li>
+                      <li>Humidity: 23</li>
                     </ul>
-                  <PieChart chartData={chartData} />
-       </div>
-            
+                    Sustainability Score: 72
+                    <PieChart chartData={chartData} />
+                  </div>
                 </div>
               </div>
-    
             </div>
             {/* Right section */}
-            <div class="min-h-screen bg-white-500 py-6 flex flex-col justify-center sm:py-12">
-      <div class="py-3 sm:max-w-xl sm:mx-auto w-full px-2 sm:px-0">
-    
-        <div class="relative text-gray-700 antialiased text-sm font-semibold">
-    
-          {/* <!-- Vertical bar running through middle --> */}
-          <div class="hidden sm:block w-1 bg-green-300 absolute h-full left-1/2 transform -translate-x-1/2"></div>
-    
-          {/* <!-- Left section, set by justify-start and sm:pr-8 --> */}
-          <div class="mt-6 sm:mt-0 sm:mb-12">
-            <div class="flex flex-col sm:flex-row items-center">
-              <div class="flex justify-start w-full mx-auto items-center">
-                <div class="w-full sm:w-1/2 sm:pr-8">
-                  <div class="p-4 bg-green-200 rounded shadow">
-                    {RMS[MED[ID].RMSid].id}
-                    {RMS[MED[ID].RMSid].name}
-                    {RMS[MED[ID].RMSid].place}
-                    {RMS[MED[ID].RMSid].price1}
+            <div className="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-white">
+              <div className="py-3 sm:max-w-xl sm:mx-auto w-full px-2 sm:px-0">
+                <div className="relative text-gray-700 antialiased text-sm font-semibold">
+                  <div className="hidden sm:block w-1 bg-green-300 absolute h-full left-1/2 transform -translate-x-1/2"></div>
+      
+                  {/* Left section */}
+                  <div className="mt-6 sm:mt-0 sm:mb-12">
+                    <div className="flex flex-col sm:flex-row items-center">
+                      <div className="flex justify-start w-full mx-auto items-center">
+                        <div className="w-full sm:w-1/2 sm:pr-8">
+                          <div className="p-4 bg-green-200 rounded shadow">
+                            {RMS[MED[ID].RMSid].id}
+                            {RMS[MED[ID].RMSid].name}
+                            {RMS[MED[ID].RMSid].place}
+                            {RMS[MED[ID].RMSid].price1}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
+      
+                  {/* Right section */}
+                  <div className="mt-6 sm:mt-0 sm:mb-12">
+                    <div className="flex flex-col sm:flex-row items-center">
+                      <div className="flex justify-end w-full mx-auto items-center">
+                        <div className="w-full sm:w-1/2 sm:pl-8">
+                          <div className="p-4 bg-green-200 rounded shadow">
+                            {MAN[MED[ID].MANid].id}
+                            {MAN[MED[ID].MANid].name}
+                            {MAN[MED[ID].MANid].place}
+                            {MAN[MED[ID].MANid].price2}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+      
+                  {/* ... Add similar structure for other sections ... */}
+      
                 </div>
-              </div>
-              <div class="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
               </div>
             </div>
           </div>
-    
-          {/* <!-- Right section, set by justify-end and sm:pl-8 --> */}
-          <div class="mt-6 sm:mt-0 sm:mb-12">
-            <div class="flex flex-col sm:flex-row items-center">
-              <div class="flex justify-end w-full mx-auto items-center">
-                <div class="w-full sm:w-1/2 sm:pl-8">
-                  <div class="p-4 bg-green-200 rounded shadow">
-                  {MAN[MED[ID].MANid].id}
-                  {MAN[MED[ID].MANid].name}
-                  {MAN[MED[ID].MANid].place}
-                  {MAN[MED[ID].MANid].price2}
-                  </div>
-                </div>
-              </div>
-              <div class="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              </div>
-            </div>
-          </div>
-    
-    
-    
-        </div>
-    
-      </div>
-    </div>
-          </div>
-          
         </>
       );
+      
     }
     if (TrackTillOrdered) {
         return (
-            <>
-           
-        
-         <span><b>Current Account Address:</b> {currentaccount}</span>
-       
-                                    
-              <div   className="flex">
-        
-                {/* Left section */}
-                <div className="w-2/3 bg-white-100 p-4 flex flex-col mb-4">
-                  {/* Top section */}
-                  <h1 className="text-2xl font-bold mb-10">{MED[ID].name}</h1>
-                  <div className="flex items-center">
-                    <img
-                      src="https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=170667a&w=0&k=20&c=QDuN_TDSFCW2m-np7xPWPslXyrhwtIYP9Wq6W3NysPc="
-                      alt="Image 1"
-                      className="w-60 h-60 rounded-full mr-2"
-                    />
-                    <p>{MED[ID].id}</p>
-                  </div>
-                  {/* Bottom section */}
-                  <div className="flex items-center mt-20">
-                    <div>
-                      <h1 className="text-2xl font-bold mb-10">{SOIL[ID].NaturalFertilizer} {SOIL[ID].SyntheticFertilizer} {SOIL[ID].Organicertilizer}</h1>
-                      <div className='h-24 w-24'>
-                      <PieChart chartData={chartData} />
-           </div>
-                
-                    </div>
-                  </div>
-        
-        
-                </div>
-                {/* Right section */}
-                <div class="min-h-screen bg-white-500 py-6 flex flex-col justify-center sm:py-12">
-          <div class="py-3 sm:max-w-xl sm:mx-auto w-full px-2 sm:px-0">
-        
-            <div class="relative text-gray-700 antialiased text-sm font-semibold">
-        
-              {/* <!-- Vertical bar running through middle --> */}
-              <div class="hidden sm:block w-1 bg-green-300 absolute h-full left-1/2 transform -translate-x-1/2"></div>
-        
-              {/* <!-- Left section, set by justify-start and sm:pr-8 --> */}
-              <div class="mt-6 sm:mt-0 sm:mb-12">
-                <div class="flex flex-col sm:flex-row items-center">
-                  <div class="flex justify-start w-full mx-auto items-center">
-                    <div class="w-full sm:w-1/2 sm:pr-8">
-                      <div class="p-4 bg-green-200 rounded shadow">
-                        Now this is a story all about how,
-                      </div>
-                    </div>
-                  </div>
-                  <div class="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-        
-              {/* <!-- Right section, set by justify-end and sm:pl-8 --> */}
-              <div class="mt-6 sm:mt-0 sm:mb-12">
-                <div class="flex flex-col sm:flex-row items-center">
-                  <div class="flex justify-end w-full mx-auto items-center">
-                    <div class="w-full sm:w-1/2 sm:pl-8">
-                      <div class="p-4 bg-green-200 rounded shadow">
-                        My life got flipped turned upside down,
-                      </div>
-                    </div>
-                  </div>
-                  <div class="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-        
-              {/* <!-- Left section, set by justify-start and sm:pr-8 --> */}
-              <div class="mt-6 sm:mt-0 sm:mb-12">
-                <div class="flex flex-col sm:flex-row items-center">
-                  <div class="flex justify-start w-full mx-auto items-center">
-                    <div class="w-full sm:w-1/2 sm:pr-8">
-                      <div class="p-4 bg-green-200 rounded shadow">
-                        And I'd like to take a minute, just sit right there,
-                      </div>
-                    </div>
-                  </div>
-                  <div class="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-        
-              {/* <!-- Right section, set by justify-end and sm:pl-8 --> */}
-              <div class="mt-6 sm:mt-0">
-                <div class="flex flex-col sm:flex-row items-center">
-                  <div class="flex justify-end w-full mx-auto items-center">
-                    <div class="w-full sm:w-1/2 sm:pl-8">
-                      <div class="p-4 bg-green-200 rounded shadow">
-                        I'll tell you how I became the Prince of a town called Bel Air.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-        
-        
-        
+           <>
+    <span className="block font-semibold mt-4">
+      Current Account Address: {currentaccount}
+    </span>
+    <div className="flex mt-2">
+      {/* Left section */}
+      <div className="w-2/3 bg-white p-4 flex flex-col mb-4">
+        {/* Top section */}
+        <h1 className="text-2xl font-bold mb-10">{MED[ID].name}</h1>
+        <div className="flex items-center">
+          <img
+            src="https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=170667a&w=0&k=20&c=QDuN_TDSFCW2m-np7xPWPslXyrhwtIYP9Wq6W3NysPc="
+            alt="Image 1"
+            className="w-60 h-60 rounded-full mr-2"
+          />
+          <p>{MED[ID].id}</p>
+        </div>
+        {/* Bottom section */}
+        <div className="flex items-center mt-20">
+          <div>
+            <h1 className="text-2xl font-bold mb-10">
+              {SOIL[ID].NaturalFertilizer} {SOIL[ID].SyntheticFertilizer} {SOIL[ID].Organicertilizer}
+            </h1>
+            <div className="h-24 w-24">
+              <PieChart chartData={chartData} />
             </div>
-        
           </div>
         </div>
+      </div>
+      {/* Right section */}
+      <div className="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-white">
+        <div className="py-3 sm:max-w-xl sm:mx-auto w-full px-2 sm:px-0">
+          <div className="relative text-gray-700 antialiased text-sm font-semibold">
+            <div className="hidden sm:block w-1 bg-green-300 absolute h-full left-1/2 transform -translate-x-1/2"></div>
+            
+            {/* Sections */}
+            <div className="mt-6 sm:mt-0 sm:mb-12">
+              <div className="flex flex-col sm:flex-row items-center">
+                <div className="flex justify-start w-full mx-auto items-center">
+                  <div className="w-full sm:w-1/2 sm:pr-8">
+                    <div className="p-4 bg-green-200 rounded shadow">
+                      Now this is a story all about how,
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-full bg-green-500 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
               </div>
-              
-            </>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </>
           );
     }
     const handlerChangeID = (event) => {
@@ -801,56 +664,76 @@ function Track() {
 
     return (
         <div>
-            <span><b>Current Account Address:</b> {currentaccount}</span>
-            <span onClick={redirect_to_home} className="btn btn-outline-danger btn-sm"> HOME</span>
-            <table className="table table-sm table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Product ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Current Price</th>
-                        <th scope="col">Current Processing Stage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.keys(MED).map(function (key) {
-                        return (
-                            <tr key={key}>
-                                <td>{MED[key].id}</td>
-                                <td>{MED[key].name}</td>
-                                <td>{MED[key].description}</td>
-                                <td>
-                                
-        <span>{
-          MedStage[key] === 'Raw Material Supply Stage' 
-          ? MED[key].price1
-          : MedStage[key] === 'Manufacturing Stage'
-          ? MED[key].price2
-          : MedStage[key] === 'Distribution Stage'
-          ? MED[key].price3
-          : MedStage[key] === 'Retail Stage'
-          ? MED[key].price4
-          : null // add a default value or handle case when no matching stage is found
-        }
-        </span> </td>
-                           <td>
-                                    {
-                                        MedStage[key]
-                                    }
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-            <h5>Enter Product ID to Track it</h5>
-          
-            <form onSubmit={handlerSubmit}>
-                <input className="form-control-sm" type="text" onChange={handlerChangeID} placeholder="Enter Product ID" required />
-                <button className="btn btn-outline-success btn-sm" onSubmit={handlerSubmit}>Track</button>
-               
-            </form>
+        <div className="bg-green-100 min-h-screen p-4">
+  <div className="container mx-auto">
+    <span className="block text-lg font-semibold text-green-800">
+      Current Account Address: {currentaccount}
+    </span>
+    <button
+      onClick={redirect_to_home}
+      className="block mt-2 px-4 py-1 text-white bg-red-500 rounded-md"
+    >
+      HOME
+    </button>
+
+    <table className="w-full mt-4 border-collapse border border-green-500">
+      <thead>
+        <tr>
+          <th className="border border-green-500 px-4 py-2 text-green-800">Product ID</th>
+          <th className="border border-green-500 px-4 py-2 text-green-800">Name</th>
+          <th className="border border-green-500 px-4 py-2 text-green-800">Description</th>
+          <th className="border border-green-500 px-4 py-2 text-green-800">Current Price</th>
+          <th className="border border-green-500 px-4 py-2 text-green-800">Current Processing Stage</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.keys(MED).map(function (key) {
+          return (
+            <tr key={key}>
+              <td className="border border-green-500 px-4 py-2">{MED[key].id}</td>
+              <td className="border border-green-500 px-4 py-2">{MED[key].name}</td>
+              <td className="border border-green-500 px-4 py-2">{MED[key].description}</td>
+              <td className="border border-green-500 px-4 py-2">
+                <span className="text-green-800">
+                  {
+                    MedStage[key] === 'Raw Material Supply Stage'
+                    ? MED[key].price1
+                    : MedStage[key] === 'Manufacturing Stage'
+                    ? MED[key].price2
+                    : MedStage[key] === 'Distribution Stage'
+                    ? MED[key].price3
+                    : MedStage[key] === 'Retail Stage'
+                    ? MED[key].price4
+                    : null // add a default value or handle case when no matching stage is found
+                  }
+                </span>
+              </td>
+              <td className="border border-green-500 px-4 py-2">{MedStage[key]}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+
+    <h5 className="mt-4 font-semibold text-green-800">Enter Product ID to Track it</h5>
+    <form onSubmit={handlerSubmit} className="flex mt-2">
+      <input
+        className="form-input px-2 py-1 w-1/2 rounded-md border border-green-500"
+        type="text"
+        onChange={handlerChangeID}
+        placeholder="Enter Product ID"
+        required
+      />
+      <button
+        className="ml-2 px-4 py-1 text-white bg-green-500 rounded-md"
+        onSubmit={handlerSubmit}
+      >
+        Track
+      </button>
+    </form>
+  </div>
+</div>
+
            
         </div>
     )

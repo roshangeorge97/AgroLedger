@@ -1,9 +1,4 @@
 import React from 'react'
-import logo from 'C:/Users/User/Documents/supply-chain-truffle-react-main/client/src/assets/planting.png'
-import user1 from 'C:/Users/User/Documents/supply-chain-truffle-react-main/client/src/assets/user.png'
-import id from 'C:/Users/User/Documents/supply-chain-truffle-react-main/client/src/assets/id-card.png'
-import phone from 'C:/Users/User/Documents/supply-chain-truffle-react-main/client/src/assets/telephone.png'
-import home from 'C:/Users/User/Documents/supply-chain-truffle-react-main/client/src/assets/home-button.png'
 
 const Dashboard = () => {
   return (
@@ -22,7 +17,6 @@ const Dashboard = () => {
                   </svg>
                </button>
                <a href="#" class="text-xl font-bold flex items-center lg:ml-2.5">
-               <img   src={logo} class="h-6 mr-2" alt="Windster Logo"/>
                <span class="self-center whitespace-nowrap">Windster</span>
                </a>
                <form action="#" method="GET" class="hidden lg:block lg:pl-32">
@@ -68,25 +62,21 @@ const Dashboard = () => {
                </li>
                <li>
                   <div class="flex items-center bg-green-100 py-2 px-3 rounded-lg">
-                     <img src={user1} alt="User Icon" class="w-10 h-10 rounded-full object-cover mr-2"/>
                      <h4 class="text-lg font-semibold text-gray-900">Kassandra</h4>
                   </div>
                </li>
                <li>
                   <div class="flex items-center bg-green-100 py-2 px-3 rounded-lg">
-                     <img src={id} alt="id Icon" class="w-10 h-10 rounded-full object-cover mr-2"/>
                      <h4 class="text-lg font-semibold text-gray-900">182531</h4>
                   </div>
                </li>
                <li>
                   <div class="flex items-center bg-green-100 py-2 px-3 rounded-lg">
-                     <img src={phone} alt="phone Icon" class="w-10 h-10 rounded-full object-cover mr-2"/>
                      <h4 class="text-lg font-semibold text-gray-900">(731) 734-2133</h4>
                   </div>
                </li>
                <li>
                   <div class="flex items-center bg-green-100 py-2 px-3 rounded-lg">
-                     <img src={home} alt="Home Icon" class="w-10 h-10 rounded-full object-cover mr-2"/>
                      <h4 class="text-lg font-semibold text-gray-900">Atlanta</h4>
                   </div>
                </li>
