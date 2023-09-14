@@ -281,7 +281,7 @@ function AssignRoles() {
                                 )
                             })}
                         </tbody>
-                    </table>
+                    </table> 
                 </div>
 
                 <div className="mt-6">
