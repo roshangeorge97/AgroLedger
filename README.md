@@ -4,7 +4,6 @@
   
 [![Logo](/Screenshots/2137825_food_fruit_lemon_organic_vegan_icon(1).png)]()
 <h3 align="center">AgroLedger</h3>
-m
   
   [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
   [![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
