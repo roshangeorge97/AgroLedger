@@ -82,3 +82,4 @@ Live Demo is deployed at [Live Demo](https://agro-ledger.vercel.app/) through Ve
 ## ✍️ Authors <a name = "authors"></a>
 - [@roshangeorge97](https://github.com/roshangeorge97) - Backend Architecture
 - [@VishnuAmit](https://github.com/VishnuAmit) - Frontend Architecture
+- [@AkileshRaoS](https://github.com/AkileshRaoS) - Conceptuation
